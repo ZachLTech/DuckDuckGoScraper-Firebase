@@ -40,6 +40,14 @@ exports.addquery = onRequest(async (req, res) => {
   // Access the parameter `{documentId}` with `event.params`
   logger.log("Uppercasing", event.params.documentId, query);
 
+  await page.click('button#more-results');
+  await page.waitForSelector('button#more-results:not([disabled])', { timeout: 5_000 });
+  await page.click('button#more-results');
+  await page.waitForSelector('button#more-results:not([disabled])', { timeout: 5_000 });
+  await page.click('button#more-results');
+  await page.waitForSelector('button#more-results:not([disabled])', { timeout: 5_000 });
+  await page.click('button#more-results');
+
   const titles = await page.evaluate( () => {
 
     const spans = Array.from(document.querySelectorAll('span.EKtkFWMYpwzMKOYr0GYm'));
