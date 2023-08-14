@@ -51,7 +51,6 @@ exports.addquery = onRequest(async (req, res) => {
     i++;
   }
 
-
   const titles = await page.evaluate( () => {
 
     const spans = Array.from(document.querySelectorAll('span.EKtkFWMYpwzMKOYr0GYm'));
