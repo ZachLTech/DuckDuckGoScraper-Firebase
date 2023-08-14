@@ -40,13 +40,17 @@ exports.addquery = onRequest(async (req, res) => {
   // Access the parameter `{documentId}` with `event.params`
   logger.log("Uppercasing", event.params.documentId, query);
 
-  await page.click('button#more-results');
-  await page.waitForSelector('button#more-results:not([disabled])', { timeout: 5_000 });
-  await page.click('button#more-results');
-  await page.waitForSelector('button#more-results:not([disabled])', { timeout: 5_000 });
-  await page.click('button#more-results');
-  await page.waitForSelector('button#more-results:not([disabled])', { timeout: 5_000 });
-  await page.click('button#more-results');
+  let tempInt = 1;
+  while (tempInt<5){
+    try {
+      await page.click('button#more-results');
+      await page.waitForSelector('button#more-results:not([disabled])', { timeout: 5_000 });
+    } catch (e) {
+      break;
+    }
+    i++;
+  }
+
 
   const titles = await page.evaluate( () => {
 
